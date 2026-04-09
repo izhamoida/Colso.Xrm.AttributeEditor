@@ -79,7 +79,10 @@ namespace Colso.Xrm.AttributeEditor.AppCode
                 switch (column.Type)
                 {
                     case CellValues.Number:
-                        return int.Parse(stringvalue);
+                        long longValue = long.Parse(stringvalue);
+                        if (longValue >= int.MinValue && longValue <= int.MaxValue)
+                            return (int)longValue;
+                        return longValue;
                     default:
                         return stringvalue;
                 }
